@@ -48,6 +48,7 @@ class PotentialSecret:
         self.filename = filename
         self.lineno = lineno
         self.set_secret(secret)
+        self.secret_len = len(secret)
         self.is_secret = is_secret
         self.is_verified = False
 
@@ -58,6 +59,7 @@ class PotentialSecret:
 
     def set_secret(self, secret):
         self.secret_hash = self.hash_secret(secret)
+
 
         # Note: Originally, we never wanted to keep the secret value in memory,
         #       after finding it in the codebase. However, to support verifiable
@@ -86,6 +88,7 @@ class PotentialSecret:
             'filename': self.filename,
             'line_number': self.lineno,
             'hashed_secret': self.secret_hash,
+            'secret_len': self.secret_len,
             'is_verified': self.is_verified,
         }
 
